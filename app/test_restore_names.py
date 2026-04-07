@@ -3,7 +3,7 @@ from app.restore_names import restore_names
 
 
 @pytest.fixture
-def base_users():
+def base_users() -> list[dict]:
     return [
         {
             "last_name": "Holy",
@@ -16,7 +16,7 @@ def base_users():
     ]
 
 
-def test_restore_names_when_first_name_is_none(base_users: list[dict]):
+def test_restore_names_when_first_name_is_none(base_users: list[dict]) -> None:
     users = [user.copy() for user in base_users]
 
     users[0]["first_name"] = None
@@ -40,7 +40,7 @@ def test_restore_names_when_first_name_is_none(base_users: list[dict]):
     assert users == expected
 
 
-def test_restore_names_when_first_name_missing(base_users: list[dict]):
+def test_restore_names_when_first_name_missing(base_users: list[dict]) -> None:
     users = [user.copy() for user in base_users]
     restore_names(users)
 
